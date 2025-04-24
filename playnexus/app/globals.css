@@ -1,2 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "tailwindcss";
 
+/* Custom variables for light and dark themes using @layer */
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+    --primary: #3490dc;
+    --secondary: #ffed4a;
+  }
+
+  .dark {
+    --background: #121212;
+    --foreground: #ffffff;
+    --primary: #1e40af;
+    --secondary: #facc15;
+  }
+}
+
+@layer components {
+  .theme-bg {
+    background-color: var(--background);
+  }
+
+  .theme-text {
+    color: var(--foreground);
+  }
+
+  .theme-primary {
+    background-color: var(--primary);
+    color: white;
+  }
+
+  .theme-secondary {
+    background-color: var(--secondary);
+    color: black;
+  }
+}

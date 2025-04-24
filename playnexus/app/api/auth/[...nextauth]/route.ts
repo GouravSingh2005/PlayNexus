@@ -15,7 +15,7 @@ export const authOptions: NextAuthOptions = {
       try {
         const { user } = params;
 
-        
+        console.log(params);
         const existingUser = await prisma1.user.findUnique({
           where: {
             email: user?.email || "",
@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (!existingUser) {
-          
+          console.log("Creating user...");
           await prisma1.user.create({
             data: {
               email: user?.email || "",

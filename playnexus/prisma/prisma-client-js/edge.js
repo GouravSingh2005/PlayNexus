@@ -144,7 +144,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/gourav-singh/PlayNexus/PlayNexus/playnexus/prisma/node_modules/@prisma/client",
+      "value": "/home/gourav-singh/PlayNexus/PlayNexus/playnexus/prisma/prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
@@ -163,25 +163,26 @@ const config = {
   },
   "relativeEnvPaths": {
     "rootEnvPath": null,
-    "schemaEnvPath": "../../../../.env"
+    "schemaEnvPath": "../../.env"
   },
-  "relativePath": "../../..",
+  "relativePath": "..",
   "clientVersion": "6.6.0",
   "engineVersion": "f676762280b54cd07c770017ed3711ddde35f37a",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://docker1_owner:npg_CVmX6yz2Acqo@ep-yellow-darkness-a8e05ibm-pooler.eastus2.azure.neon.tech/docker1?sslmode=require"
+        "value": null
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./node_modules/@prisma/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       String   @id @default(uuid())\n  email    String   @unique\n  provider Provider\n\n  upvote Upvote[]\n  Stream Stream[]\n}\n\nmodel Stream {\n  id          String     @id @default(uuid())\n  type        StreamType\n  videolink   String\n  extractedId String\n  active      Boolean    @default(true)\n  upvotes     Upvote[]\n  userId      String\n  user        User       @relation(fields: [userId], references: [id])\n}\n\nmodel Upvote {\n  id       String   @id @default(uuid())\n  userId   String\n  StreamId String\n  user     User     @relation(fields: [userId], references: [id])\n  Stream   Stream[]\n\n  @@unique([userId, StreamId])\n}\n\nenum StreamType {\n  youtube\n  Spotify\n}\n\nenum Provider {\n  Google\n}\n",
-  "inlineSchemaHash": "c1d9bf80df06b64f71227dbdf6b79cf110610ddc89ba244b4cd3d96bb8fb6af5",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"prisma-client-js\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       String   @id @default(uuid())\n  email    String   @unique\n  provider Provider\n\n  upvote Upvote[]\n  Stream Stream[]\n}\n\nmodel Stream {\n  id          String     @id @default(uuid())\n  type        StreamType\n  videolink   String\n  extractedId String\n  active      Boolean    @default(true)\n  upvotes     Upvote[]\n  userId      String\n  user        User       @relation(fields: [userId], references: [id])\n}\n\nmodel Upvote {\n  id       String   @id @default(uuid())\n  userId   String\n  StreamId String\n  user     User     @relation(fields: [userId], references: [id])\n  Stream   Stream[]\n\n  @@unique([userId, StreamId])\n}\n\nenum StreamType {\n  youtube\n  Spotify\n}\n\nenum Provider {\n  Google\n}\n",
+  "inlineSchemaHash": "43ef65e187a47be4547dbe146f6638a69b41d9abe0ffd29d8bce95af691eab9e",
   "copyEngine": true
 }
 config.dirname = '/'
